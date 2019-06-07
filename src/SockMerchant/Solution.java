@@ -1,17 +1,7 @@
 package SockMerchant;
 
 import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-import java.util.regex.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 // https://www.hackerrank.com/challenges/sock-merchant/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=warmup
 
@@ -19,16 +9,16 @@ public class Solution {
 
     // Complete the sockMerchant function below.
     static int sockMerchant(int n, int[] ar) {
-        Map<Integer, Integer> result = new HashMap<>();
+        Set<Integer> result = new HashSet<>();
         int res = 0;
         for (int p : ar) {
-            if(result.containsKey(p)) {
-                if (result.get(p) == 1)
-                    res++;
+            if(result.contains(p)) {
+                result.remove(p);
+                res++;
+            } else {
+                result.add(p);
             }
-            result.put(p, 1);
         }
-        System.out.println(res);
         return res;
     }
 
